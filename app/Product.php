@@ -8,8 +8,8 @@ class Product extends Model
 {
     protected $guarded = [];
     
-    public function variant()
+    public function order()
     {
-        return $this->hasMany('App\Variant');
+        return $this->hasOne('App\Order');
     }
 }
