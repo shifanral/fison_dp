@@ -55,4 +55,10 @@ class PelangganController extends Controller
         $orders = Order::where('user_id', Auth::user()->id)->paginate(10);
         return view('pelanggan.pesanan', compact('orders'));
     }
+
+    public function detail_order($id)
+    {
+        $order = Order::where('id', $id)->first();
+        return view('pelanggan.detail_pesanan', compact('order'));
+    }
 }

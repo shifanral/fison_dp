@@ -3,7 +3,6 @@
     Pesanan
 @endsection
 @section('content')
-    @foreach($orders as $order)
     <div class="card mb-3">
         <div class="card-header">
             <div class="row">
@@ -45,17 +44,29 @@
                     <p>{{ 'Rp. ' . number_format($order->amount, 0, '.', '.') }}</p>
                 </div>
             </div>
+            <div class="row">
+                <div class="form-group col-12">
+                    <p class="font-weight-bold">Desain</p>
+                    <p class="text-center"><img src="{{ asset('storage/design/' . $order->design) }}"> }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-4">
+                    <p class="font-weight-bold">Harga Satuan</p>
+                    <p>{{ 'Rp. ' . number_format($order->product->price, 0, '.', '.') }}</p>
+                </div>
+                <div class="form-group col-4">
+                    <p class="font-weight-bold">Quantity</p>
+                    <p>{{ $order->qty }}</p>
+                </div>
+                <div class="form-group col-4">
+                    <p class="font-weight-bold">Total Pesanan</p>
+                    <p>{{ 'Rp. ' . number_format($order->amount, 0, '.', '.') }}</p>
+                </div>
+            </div>
         </div>
         <div class="card-footer">
-            <a href="{{ route('pelanggan.detail_order', $order->id) }}" class="btn btn-block btn-primary">Detail</a>
+            <a hre f="" class="btn btn-block btn-primary">Detail</a>
         </div>
     </div>
-    @endforeach
-    <nav>
-        <ul class="pagination justify-content-end ml-3 mr-3"> <span style="color: #ff0000;"></span>
-            <li class="page-item">
-                {{ $orders->links() }}
-            </li>    
-        </ul>
-    </nav>
 @endsection

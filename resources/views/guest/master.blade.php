@@ -40,6 +40,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#produk" style="color: black;">Produk</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#faq" style="color: black;">FAQ</a>
+                        </li>
 
                         @if (Route::has('login'))
                             @auth
@@ -73,7 +76,7 @@
                                 </li>
                             @else
                             <li class="nav-item">
-                                <button type="button" name="commit" class="btn" data-toggle="modal" data-target="#login" style="border-width: medium; border-color: white !important; color: white; background-color: #0277bd !important;">Login</button>
+                                <button type="button" name="commit" class="btn" data-toggle="modal" data-target="#login" style="border-width: medium; border-color: blue; !important; color: black; background-color: white; !important;">Login</button>
                             </li>
                             @endauth
                         @endif

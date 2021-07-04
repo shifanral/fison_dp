@@ -7,6 +7,7 @@
         <div class="container">
             <h5 class="display-1 animate__animated animate__slideInDown">Selamat Datang</h5>
             <p class="display-2 animate__animated animate__slideInDown">Di Fison Digital Printing</p>
+            <a href="{{ route('register') }}" style="border-width: medium;"class="btn btn-xl btn-primary">Daftar</a>
         </div>
     </div>
     <section id="produk">
@@ -45,6 +46,12 @@
                 </li>    
             </ul>
         </nav>
+    </section>
+    <section id="faq">
+        <hr class="divider">
+        <div class="align-items-center">
+            @include('guest.faq')
+        </div>    
     </section>
 @endsection
 <style>
