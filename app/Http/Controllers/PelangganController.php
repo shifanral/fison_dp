@@ -61,4 +61,22 @@ class PelangganController extends Controller
         $order = Order::where('id', $id)->first();
         return view('pelanggan.detail_pesanan', compact('order'));
     }
+
+    public function update_order(Request $request, $id)
+    {
+        if($request->hasFile('payment_receipt')){
+            //menyimpan sementara ke dalam variabel file
+            $file = $request->file('payment_receipt');
+            //ubah nama file
+            $filename = Auth::user()->id . '/' . date('d/m/Y') . $request->id . '.' . $file->getClientOriginalExtension();
+            //simpan file
+            $file->storeAs('public/payment_receipt', $filename);
+            $order = Order::where('id', $id)->update([
+                'payment_receipt' => $filename,
+                'order_status' => 2,
+                'payment_status' => 1
+            ]);
+        }
+        return redirect(route('pelanggan.pesanan'))->with('status', 'Data berhasil diubah');
+    }
 }

@@ -40,6 +40,7 @@ Route::group(['prefix' => 'pelanggan', 'middleware' => 'pelanggan'], function(){
     Route::post('/produk/{id}', 'PelangganController@save_order')->name('pelanggan.save_order');
     Route::get('/pesanan', 'PelangganController@pesanan')->name('pelanggan.pesanan');
     Route::get('/pesanan/{id}', 'PelangganController@detail_order')->name('pelanggan.detail_order');
+    Route::post('/pesanan/{id}', 'PelangganController@update_order')->name('pelanggan.update_order');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

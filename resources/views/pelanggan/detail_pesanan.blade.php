@@ -51,22 +51,31 @@
                 </div>
             </div>
             <div class="row">
-                <div class="form-group col-4">
-                    <p class="font-weight-bold">Harga Satuan</p>
-                    <p>{{ 'Rp. ' . number_format($order->product->price, 0, '.', '.') }}</p>
+                <div class="form-group col-6">
+                    <p class="font-weight-bold">Status Pembayaran</p>
+                    @if($order->payment_status == 0)
+                        <span class="badge badge-pill badge-warning">Belum Dibayar</span>
+                    @else
+                        <span class="badge badge-pill badge-success">Sudah Dibayar</span>
+                    @endif
                 </div>
-                <div class="form-group col-4">
-                    <p class="font-weight-bold">Quantity</p>
-                    <p>{{ $order->qty }}</p>
-                </div>
-                <div class="form-group col-4">
-                    <p class="font-weight-bold">Total Pesanan</p>
-                    <p>{{ 'Rp. ' . number_format($order->amount, 0, '.', '.') }}</p>
+                <div class="form-group col-6">
+                    <p class="font-weight-bold">Bukti Bayar</p>
+                    @if($order->payment_status == 0)
+                        <form action="{{ route('pelanggan.update_order', $order->id) }}" method="POST" name="update_order" id="update_order" enctype="multipart/form-data">    
+                            @csrf
+                            @method('POST')
+                            <input type="file" class="form-control" name="payment_receipt"> 
+                        
+                    @else
+                        Tes
+                    @endif
                 </div>
             </div>
         </div>
         <div class="card-footer">
-            <a hre f="" class="btn btn-block btn-primary">Detail</a>
+            <button class="btn btn-block btn-primary">Detail</button>
+        </form>
         </div>
     </div>
 @endsection
