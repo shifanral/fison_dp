@@ -3,7 +3,6 @@
     Data Pelanggan
 @endsection
 @section('content')
-    @foreach ($customers as $customer)
     <table class="table table-light" id="tabel">
         <thead class="thead-light">
             <tr>
@@ -13,6 +12,7 @@
                 <th>Email</th>
             </tr>
         </thead>
+        @foreach ($customers as $customer)
         <tbody>
             <tr>
                 <td>{{ $customer->name }}</td>
@@ -21,6 +21,6 @@
                 <td>{{ $customer->email }}</td>
             </tr>
         </tbody>
+        @endforeach
     </table>
-    @endforeach
 @endsection

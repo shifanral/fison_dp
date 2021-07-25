@@ -31,6 +31,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     Route::get('/pesanan', 'AdminController@pesanan')->name('admin.pesanan');
     Route::get('/pesanan/{id}', 'AdminController@detail_pesanan')->name('admin.detail_pesanan');
     Route::put('/pesanan/{id}', 'AdminController@update_pesanan')->name('admin.update_pesanan');
+    Route::get('/edit_kata_sandi/', 'AdminController@edit_kata_sandi')->name('admin.edit_kata_sandi');
+    Route::put('/update_kata_sandi/{id_user}', 'AdminController@update_kata_sandi')->name('admin.update_kata_sandi');
 });
 
 Route::group(['prefix' => 'pelanggan', 'middleware' => 'pelanggan'], function(){

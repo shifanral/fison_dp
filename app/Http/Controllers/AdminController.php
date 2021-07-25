@@ -1,17 +1,43 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\User;
 use App\Order;
 use App\Product;
+use Auth;
 
 class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin.index');
+        $order0 = Order::where('order_status', '0')->count();
+        $order2 = Order::where('order_status', '2')->count();
+        $order3 = Order::where('order_status', '3')->count();
+        $order5 = Order::where('order_status', '5')->count();
+        return view('admin.index', compact('order0', 'order2', 'order3', 'order5'));
+    }
+
+    public function edit_kata_sandi()
+    {
+        $user = User::where('id', Auth::user()->id)->first();
+        return view('admin.edit_kata_sandi');
+    } 
+    
+    public function update_kata_sandi(Request $request, $id_user)
+    {
+    $user = User::where('id', $id_user)->first();
+    if(!Hash::check($request->password, $user->password)){
+        return redirect(route('admin.edit_kata_sandi'))->with('alert', 'Password lama salah');
+    }
+    if($request->password_baru != $request->konfir_password){
+        return redirect(route('admin.edit_kata_sandi'))->with('alert', 'Password baru dan konfirmasi tidak sama');
+    }
+    $ubah = User::where('id', $id_user)->update([
+        'password' => Hash::make($request->password_baru)
+    ]);
+     return redirect(route('admin.edit_kata_sandi'))->with('status', 'Password berhasil diubah');
     }
 
     public function pelanggan()

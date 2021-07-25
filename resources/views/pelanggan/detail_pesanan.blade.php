@@ -40,14 +40,24 @@
                     <p>{{ $order->qty }}</p>
                 </div>
                 <div class="form-group col-4">
-                    <p class="font-weight-bold">Total Pesanan</p>
+                    <p class="font-weight-bold">Ongkos Kirim</p>
+                    <p>{{ 'Rp. ' . number_format($order->shipping_fee, 0, '.', '.') }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-6">
+                    <p class="font-weight-bold"> Sub Total Pesanan (Belum Termasuk Ongkir)</p>
                     <p>{{ 'Rp. ' . number_format($order->amount, 0, '.', '.') }}</p>
+                </div>
+                <div class="form-group col-6">
+                    <p class="font-weight-bold"> Grand Total Pesanan (Sudah Termasuk Ongkir)</p>
+                    <p>{{ 'Rp. ' . number_format($order->amount+$order->shipping_fee, 0, '.', '.') }}</p>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-12">
                     <p class="font-weight-bold">Desain</p>
-                    <p class="text-center"><img src="{{ asset('storage/design/' . $order->design) }}"> }}</p>
+                    <p class="text-center"><img src="{{ asset('storage/design/' . $order->design) }}"></p>
                 </div>
             </div>
             <div class="row">
@@ -60,21 +70,24 @@
                     @endif
                 </div>
                 <div class="form-group col-6">
-                    <p class="font-weight-bold">Bukti Bayar</p>
-                    @if($order->payment_status == 0)
-                        <form action="{{ route('pelanggan.update_order', $order->id) }}" method="POST" name="update_order" id="update_order" enctype="multipart/form-data">    
-                            @csrf
-                            @method('POST')
-                            <input type="file" class="form-control" name="payment_receipt"> 
-                        
-                    @else
-                        Tes
+                    @if($order->order_status == 1)
+                        <p class="font-weight-bold">Bukti Bayar</p>
+                        @if($order->payment_status == 0)
+                            <form action="{{ route('pelanggan.update_order', $order->id) }}" method="POST" name="update_order" id="update_order" enctype="multipart/form-data">    
+                                @csrf
+                                @method('POST')
+                                <input type="file" class="form-control" name="payment_receipt"> 
+                            
+                        @else
+                            Tes
+                        @endif
                     @endif
+                    
                 </div>
             </div>
         </div>
         <div class="card-footer">
-            <button class="btn btn-block btn-primary">Detail</button>
+            <button class="btn btn-block btn-primary">Perbarui</button>
         </form>
         </div>
     </div>

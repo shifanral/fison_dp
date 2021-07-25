@@ -12,6 +12,7 @@
                     <p> {{ date('d F Y H:i:s', strtotime($order->created_at)) }}</p>
                 </div>
                 <div class="col-6 text-right">
+                    <p>
                     @if ($order->order_status == 0)
                         <span class="badge badge-pill badge-warning">Menunggu Konfirmasi Ongkir</span>
                     @elseif($order->order_status == 1)
@@ -27,6 +28,12 @@
                     @else
                         <span class="badge badge-pill badge-danger">Batal</span>
                     @endif
+                    </p>
+                    <p class="font-weight-bold text-danger">
+                        @if($order->order_status == 1)
+                            Harap melakukan pembayaran ke Rekening BCA 7635009608 a.n Shifa Nur Attika Lestari
+                        @endif
+                    </p>
                 </div>
             </div>
         </div>
@@ -42,7 +49,7 @@
                 </div>
                 <div class="form-group col-4">
                     <p class="font-weight-bold">Total Pesanan</p>
-                    <p>{{ 'Rp. ' . number_format($order->amount, 0, '.', '.') }}</p>
+                    <p>{{ 'Rp. ' . number_format($order->amount+$order->shipping_fee, 0, '.', '.') }}</p>
                 </div>
             </div>
         </div>

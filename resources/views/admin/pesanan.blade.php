@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     @foreach($orders as $order)
-    <div class="card">
+    <div class="card mb-3">
         <div class="card-body">
             <div class="row">
                 <div class="form-group col-sm-3">
