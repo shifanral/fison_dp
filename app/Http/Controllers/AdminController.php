@@ -70,12 +70,12 @@ class AdminController extends Controller
             $file->storeAs('public/products', $filename);
             //input data
             $input_product = Product::create([
-                'name' => $request->name,
-                'length' => $request->length,
-                'width' => $request->width,
-                'picture' => $filename,
-                'price' => $request->price,
-                'material_name' => $request->material_name,
+                'nama' => $request->name,
+                'panjang' => $request->length,
+                'lebar' => $request->width,
+                'gambar' => $filename,
+                'harga' => $request->price,
+                'nama_bahan' => $request->material_name,
                 'status' => '1',
             ]);
             return redirect(route('admin.produk'))->with('status', 'Data berhasil diinput!');
@@ -102,27 +102,27 @@ class AdminController extends Controller
                 //menyimpan sementara ke dalam variabel file
                 $file = $request->file('picture');
                 //ubah nama file
-                $filename = $request->name . ' ' . $request->length . 'x' . $request->width . ' ' . $request->material_name . '.' . $file->getClientOriginalExtension();
+                $filename = $request->name . ' ' . $request->panjang . 'x' . $request->lebar . ' ' . $request->nama_bahan . '.' . $file->getClientOriginalExtension();
                 //simpan file
                 $file->storeAs('public/products', $filename);
                 //input data
                 $input_product = Product::where('id', $id)->update([
-                    'name' => $request->name,
-                    'length' => $request->length,
-                    'width' => $request->width,
-                    'picture' => $filename,
-                    'price' => $request->price,
-                    'material_name' => $request->material_name,
+                    'nama' => $request->name,
+                    'panjang' => $request->length,
+                    'lebar' => $request->width,
+                    'gambar' => $filename,
+                    'harga' => $request->price,
+                    'nama_bahan' => $request->material_name,
                     'status' => $request->status,
                 ]);
             }
         }else{
             Product::where('id', $id)->update([
-                'name' => $request->name,
-                'length' => $request->length,
-                'width' => $request->width,
-                'price' => $request->price,
-                'material_name' => $request->material_name,
+                'nama' => $request->name,
+                'panjang' => $request->length,
+                'lebar' => $request->width,
+                'harga' => $request->price,
+                'nama_bahan' => $request->material_name,
                 'status' => $request->status,
             ]);
         }  
@@ -154,8 +154,8 @@ class AdminController extends Controller
         ]);              
         Order::where('id', $id)->update([
             'order_status' => $request->order_status,
-            'payment_status' => $request->payment_status,
-            'shipping_fee' => $request->shipping_fee,
+            'status_bayar' => $request->payment_status,
+            'ongkos_kirim' => $request->shipping_fee,
         ]);
         return redirect(route('admin.pesanan'))->with('status', 'Data berhasil diupdate');
     }

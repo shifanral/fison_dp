@@ -9,11 +9,11 @@
             <div class="row">
                 <div class="form-group col-sm-3">
                     <p class="font-weight-bold">Nama Pemesan</p>
-                    <p>{{ $order->user->name }}</p>
+                    <p>{{ $order->user->nama }}</p>
                 </div>
                 <div class="form-group col-sm-3">
                     <p class="font-weight-bold">Status Pembayaran</p>
-                    @if($order->payment_status == 0)
+                    @if($order->status_bayar == 0)
                         <span class="badge badge-pill badge-warning">Belum Dibayar</span>
                     @else
                         <span class="badge badge-pill badge-success">Sudah Dibayar</span>
@@ -45,19 +45,19 @@
             <div class="row">
                 <div class="form-group col-sm-3">
                     <p class="font-weight-bold">Nama Produk</p>
-                    <p>{{ $order->product->name }}</p>
+                    <p>{{ $order->product->nama }}</p>
                 </div>
                 <div class="form-group col-sm-3">
                     <p class="font-weight-bold">Ukuran Produk</p>
-                    <p>{{ $order->product->length . 'x' . $order->product->width }}</p>
+                    <p>{{ $order->product->panjang . 'x' . $order->product->lebar }}</p>
                 </div>
                 <div class="form-group col-sm-3">
                     <p class="font-weight-bold">Material Produk</p>
-                    <p>{{ $order->product->material_name }}</p>
+                    <p>{{ $order->product->nama_bahan }}</p>
                 </div>
                 <div class="form-group col-sm-3">
                     <p class="font-weight-bold">Total Pesanan</p>
-                    <p>{{  'Rp. ' . number_format($order->amount, 0, 0 , '.') }}</p>
+                    <p>{{  'Rp. ' . number_format($order->total, 0, 0 , '.') }}</p>
                 </div>
             </div>
         </div>

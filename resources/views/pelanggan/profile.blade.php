@@ -8,13 +8,13 @@
         @method('PUT')
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">{{ $pelanggan->name }}</h3>
+                <h3 class="card-title">{{ $pelanggan->nama }}</h3>
             </div>
             <div class="card-body">
                 <div class="row">
                     <div class="form-group col-6">
                         <label for="name">Nama</label>
-                        <input id="name" class="form-control" type="text" name="name" value="{{ $pelanggan->name }}">
+                        <input id="name" class="form-control" type="text" name="name" value="{{ $pelanggan->nama }}">
                     </div>
                     <div class="form-group col-6">
                         <label for="email">Email</label>
@@ -24,11 +24,11 @@
                 <div class="row">
                     <div class="form-group col-6">
                         <label for="phone">No. HP</label>
-                        <input id="phone" class="form-control" type="text" name="phone" value="{{ $pelanggan->phone }}">
+                        <input id="phone" class="form-control" type="text" name="phone" value="{{ $pelanggan->no_hp }}">
                     </div>
                     <div class="form-group col-6">
                         <label for="address">Alamat</label>
-                        <input id="address" class="form-control" type="text" name="address" value="{{ $pelanggan->address }}">
+                        <input id="address" class="form-control" type="text" name="address" value="{{ $pelanggan->alamat }}">
                     </div>
                 </div>
             </div>

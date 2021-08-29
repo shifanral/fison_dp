@@ -62,12 +62,11 @@ class PelangganController extends Controller
                 'user_id' => Auth::user()->id,
                 'product_id' => $id,
                 'qty' => $request->qty,
-                'amount' => $request->total_harga,
-                'note' => $request->note,
-                'shipping_address' => $request->shipping_address,
+                'total' => $request->total_harga,
+                'catatan' => $request->note,
                 'order_status' => '0',
-                'payment_status' => '0',
-                'design' => $filename,
+                'status_bayar' => '0',
+                'desain' => $filename,
             ]);
         }
         return redirect(route('pelanggan.produk'))->with('status', 'Pesanan berhasil diinput, silahkan cek halaman pesanan untuk melihat updatenya!');
@@ -94,9 +93,9 @@ class PelangganController extends Controller
             //simpan file
             $file->storeAs('public/payment_receipt', $filename);
             $order = Order::where('id', $id)->update([
-                'payment_receipt' => $filename,
+                'bukti_bayar' => $filename,
                 'order_status' => 2,
-                'payment_status' => 1
+                'status_bayar' => 1
             ]);
         }
         return redirect(route('pelanggan.pesanan'))->with('status', 'Data berhasil diubah');
@@ -110,10 +109,10 @@ class PelangganController extends Controller
     public function update_profil(Request $request, $id)
     {
         User::where('id', Auth::user()->id)->update([
-            'name' => $request->name,
+            'nama' => $request->name,
             'email' => $request->email,
-            'phone' => $request->phone,
-            'address' => $request->address,
+            'no_hp' => $request->phone,
+            'alamat' => $request->address,
         ]);
         return redirect(route('pelanggan.edit_profil', $id))->with('status', 'Data berhasil diubah');
     }

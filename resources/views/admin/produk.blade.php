@@ -21,12 +21,12 @@
         <tbody>
             @foreach ($products as $product)
             <tr>
-                <td>{{ $product->name }}</td>
-                <td>{{ 'Rp. ' . number_format($product->price, 0, '.', '.') }}</td>
-                <td>{{ $product->length . ' x ' . $product->width }}</td>
-                <td>{{ $product->material_name  }}</td>
+                <td>{{ $product->nama }}</td>
+                <td>{{ 'Rp. ' . number_format($product->harga, 0, '.', '.') }}</td>
+                <td>{{ $product->panjang . ' x ' . $product->lebar }}</td>
+                <td>{{ $product->nama_bahan  }}</td>
                 <td>
-                    <img src="{{ asset('storage/products/' . $product->picture) }}" width="100px" length="100px" >
+                    <img src="{{ asset('storage/products/' . $product->gambar) }}" width="100px" length="100px" >
                 </td>
                 <td>
                     @if($product->status == 1)

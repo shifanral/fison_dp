@@ -8,22 +8,22 @@
         @foreach($products as $product)
         <div class="col mb-4">
             <div class="card h-100">
-                <img src="{{ asset('storage/products/'.$product->picture) }}" class="card-img-top" height="200px">
+                <img src="{{ asset('storage/products/'.$product->gambar) }}" class="card-img-top" height="200px">
                 <div class="card-body">
-                    <h5 class="card-title"> {{ $product->name }}</h5>
+                    <h5 class="card-title"> {{ $product->nama }}</h5>
                     <hr/>
                     <table class="table table-borderless">
                         <tr>
                             <td>Ukuran</td>
-                            <td>{{ $product->length . 'x' . $product->width }}</td>
+                            <td>{{ $product->panjang . 'x' . $product->lebar }}</td>
                         </tr>
                         <tr>
                             <td>Bahan</td>
-                            <td>{{ $product->material_name }}</td>
+                            <td>{{ $product->nama_bahan }}</td>
                         </tr>
                         <tr>
                             <td>Harga</td>
-                            <td>{{ 'Rp. ' . number_format($product->price, 0, '.', '.')  }}</td>
+                            <td>{{ 'Rp. ' . number_format($product->harga, 0, '.', '.')  }}</td>
                         </tr>
                     </table>
                     <p class="text-right"><a class="btn btn-outline-primary form-control" href="{{ route('pelanggan.beli_produk', $product->id) }}">Beli</a></p>

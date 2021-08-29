@@ -13,18 +13,18 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         User::create([
-            'name' => 'admin',
+            'nama' => 'admin',
             'email' => 'admin@email.com',
-            'address' => 'Jakarta',
-            'phone' => '0812345678',
+            'alamat' => 'Jakarta',
+            'no_hp' => '0812345678',
             'password' => bcrypt('12345678'),
             'role' => '1',
         ]);
         User::create([
-            'name' => 'Pelanggan',
+            'nama' => 'Pelanggan',
             'email' => 'pelanggan@email.com',
-            'address' => 'Bekasi',
-            'phone' => '08987654321',
+            'alamat' => 'Bekasi',
+            'no_hp' => '08987654321',
             'password' => bcrypt('12345678'),
             'role' => '2',
         ]);

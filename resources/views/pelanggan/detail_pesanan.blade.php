@@ -7,7 +7,7 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-6">
-                    <p> {{ $order->product->name }} </p>
+                    <p> {{ $order->product->nama }} </p>
                     <p> {{ date('d F Y H:i:s', strtotime($order->created_at)) }}</p>
                 </div>
                 <div class="col-6 text-right">
@@ -26,6 +26,11 @@
                     @else
                         <span class="badge badge-pill badge-danger">Batal</span>
                     @endif
+                    <p class="font-weight-bold text-danger">
+                        @if($order->order_status == 1)
+                            Harap melakukan pembayaran ke Rekening BCA 7635009608 a.n Shifa Nur Attika Lestari
+                        @endif
+                    </p>
                 </div>
             </div>
         </div>
@@ -33,7 +38,7 @@
             <div class="row">
                 <div class="form-group col-4">
                     <p class="font-weight-bold">Harga Satuan</p>
-                    <p>{{ 'Rp. ' . number_format($order->product->price, 0, '.', '.') }}</p>
+                    <p>{{ 'Rp. ' . number_format($order->product->harga, 0, '.', '.') }}</p>
                 </div>
                 <div class="form-group col-4">
                     <p class="font-weight-bold">Quantity</p>
@@ -41,29 +46,29 @@
                 </div>
                 <div class="form-group col-4">
                     <p class="font-weight-bold">Ongkos Kirim</p>
-                    <p>{{ 'Rp. ' . number_format($order->shipping_fee, 0, '.', '.') }}</p>
+                    <p>{{ 'Rp. ' . number_format($order->ongkos_kirim, 0, '.', '.') }}</p>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-6">
                     <p class="font-weight-bold"> Sub Total Pesanan (Belum Termasuk Ongkir)</p>
-                    <p>{{ 'Rp. ' . number_format($order->amount, 0, '.', '.') }}</p>
+                    <p>{{ 'Rp. ' . number_format($order->total, 0, '.', '.') }}</p>
                 </div>
                 <div class="form-group col-6">
                     <p class="font-weight-bold"> Grand Total Pesanan (Sudah Termasuk Ongkir)</p>
-                    <p>{{ 'Rp. ' . number_format($order->amount+$order->shipping_fee, 0, '.', '.') }}</p>
+                    <p>{{ 'Rp. ' . number_format($order->total+$order->ongkos_kirim, 0, '.', '.') }}</p>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-12">
                     <p class="font-weight-bold">Desain</p>
-                    <p class="text-center"><img src="{{ asset('storage/design/' . $order->design) }}"></p>
+                    <p class="text-center"><img src="{{ asset('storage/design/' . $order->desain) }}"></p>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-6">
                     <p class="font-weight-bold">Status Pembayaran</p>
-                    @if($order->payment_status == 0)
+                    @if($order->status_bayar == 0)
                         <span class="badge badge-pill badge-warning">Belum Dibayar</span>
                     @else
                         <span class="badge badge-pill badge-success">Sudah Dibayar</span>

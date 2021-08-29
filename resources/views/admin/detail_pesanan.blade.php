@@ -15,12 +15,12 @@
             </div>
             <div class="form-group col-3">
                 <p class="font-weight-bold">Nama Pemesan</p>
-                <p>{{ $order->user->name }}</p>
+                <p>{{ $order->user->nama }}</p>
             </div>
             <div class="form-group col-3">
                 <p class="font-weight-bold">Status Pembayaran</p>
                 <select name="payment_status" class="form-control">
-                    @if($order->payment_status == 0)
+                    @if($order->status_bayar == 0)
                       <option value="0" selected>Belum Dibayar</option>
                       <option value="1">Sudah Dibayar</option>
                     @else
@@ -96,44 +96,46 @@
         <div class="row">
             <div class="form-group col-3">
                 <p class="font-weight-bold">Nama Produk</p>
-                <p>{{ $order->product->name }}</p>
+                <p>{{ $order->product->nama }}</p>
             </div>
             <div class="form-group col-3">
                 <p class="font-weight-bold">Ukuran Produk</p>
-                <p>{{ $order->product->length . 'x' . $order->product->width }}</p>
+                <p>{{ $order->product->panjang . 'x' . $order->product->lebar }}</p>
             </div>
             <div class="form-group col-3">
                 <p class="font-weight-bold">Material Produk</p>
-                <p>{{ $order->product->material_name }}</p>
+                <p>{{ $order->product->nama_bahan }}</p>
             </div>
             <div class="form-group col-3">
                 <p class="font-weight-bold">Total Pesanan</p>
-                <p>{{  'Rp. ' . number_format($order->amount, 0, 0 , '.') }}</p>
+                <p>{{  'Rp. ' . number_format($order->total, 0, 0 , '.') }}</p>
             </div>
         </div>
         <div class="row">
             <div class="form-group col-6">
-                <p class="font-weight-bold">Alamat Pengiriman</p>
-                <p>{{ $order->shipping_address }}</p>
+                <p class="font-weight-bold">Ongkos Kirim</p>
+                <input type="text" name="shipping_fee" class="form-control" value="{{ $order->ongkos_kirim }}" onkeypress="return hanyaAngka (event)" onchange="Calculate()" onblur="stopCalculate()">
             </div>
             <div class="form-group col-6">
-                <p class="font-weight-bold">Ongkos Kirim</p>
-                <input type="text" name="shipping_fee" class="form-control" value="{{ $order->shipping_fee }}" onkeypress="return hanyaAngka (event)" onchange="Calculate()" onblur="stopCalculate()">
+                <p class="font-weight-bold">Alamat Pengiriman</p>
+                <p> {{ $order->user->alamat }} </p>
             </div>
         </div>
         <div class="row">
             <div class="form-group col-6">
                 <p class="font-weight-bold">No. HP Pemesan</p>
-                <p>{{ $order->user->phone }}</p>
+                <p>{{ $order->user->no_hp }}</p>
             </div>
+            @if($order->status_bayar == 1)
             <div class="form-group col-6">
                 <p class="font-weight-bold">Bukti Bayar</p>
-                 
+                <p> <img src="{{ asset('storage/payment_receipt/' . $order->bukti_bayar) }}" width="300px" length="300px"> </p>    
             </div>
+            @endif
         </div>
         <div class="form-group">
             <p class="font-weight-bold">Desain</p>
-            <p> <img src="{{ asset('storage/design/' . $order->design) }}"> </p>
+            <p> <img src="{{ asset('storage/design/' . $order->desain) }}"> </p>
         </div>
     </div>
     <div class="card-footer">

@@ -62,24 +62,4 @@
                 </div>
             </div>
         </div>
-        <div class="card">
-            <div class="card-header" id="headingThree">
-                <h5 class="mb-0">
-                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                        Bagaimana cara jamaah melakukan transaksi zakat fitrah?
-                    </button>
-                </h5>
-            </div>
-            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
-                <div class="card-body">
-                    <ol>
-                        <li>Login dengan email dan password yang terdaftar</li>
-                        <li>Pilih menu Zakat, kemudian klik Semua</li>
-                        <li>Klik Tambah Data</li>
-                        <li>Isi form Tambah Data Infaq dengan benar, lengkap dan jelas. Pastikan masjid yang dipilih dan bukti yang dicantumkan sudah benar</li>
-                        <li>Klik Save</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
     </div>
